@@ -86,18 +86,19 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen w-full flex flex-col">
       <Header />
 
-      <main className="flex-1 pt-24 md:pt-32">
+      <main className="flex-1">
         {/* Hero Section */}
-        <section className="py-12 md:py-16 px-4 bg-gradient-to-br from-background to-muted">
-          <div className="container mx-auto">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+        <section className="bg-gradient-to-br from-background to-muted">
+          
+          <div className="min-h-screen flex justify-center items-center mx-auto">
+            <div className="max-w-3xl space-y-2 mx-auto text-center">
+              <h1 className="text-4xl md:text-5xl font-bold">
                 Get in Touch
               </h1>
-              <p className="text-lg md:text-xl text-muted-foreground">
+              <p className="text-sm px-4 text-center md:text-xl text-muted-foreground">
                 Have questions? We'd love to hear from you. Send us a message
                 and we'll respond as soon as possible.
               </p>
@@ -106,8 +107,8 @@ const Contact = () => {
         </section>
 
         {/* Contact Info Cards */}
-        <section className="py-12 md:py-16 px-4">
-          <div className="container mx-auto">
+        <section className="">
+          <div className="p-4 mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               {contactInfo.map((info, index) => {
                 const Icon = info.icon;
@@ -129,7 +130,7 @@ const Contact = () => {
             </div>
 
             {/* Contact Form and Map */}
-            <div className="mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-8 px-4 lg:flex-row">
+            <div className="mx-auto flex min-h-screen max-w-6xl flex-col items-center justify-center gap-4 lg:flex-row">
               {/* Contact Form */}
               <Card data-aos="fade-left" className="w-full p-4 bg-card border-border lg:w-1/3">
                 <h2 className="mb-6 text-xl font-bold">Send us a Message</h2>
@@ -144,7 +145,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="mt-1"
+                      className="mt-1 placeholder:text-sm"
                       placeholder="Enter your full name"
                     />
                   </div>
@@ -158,7 +159,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="mt-1"
+                      className="mt-1 placeholder:text-sm"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -172,7 +173,7 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       rows={3}
-                      className="mt-1"
+                      className="mt-1 placeholder:text-sm"
                       placeholder="Write your message here..."
                     />
                   </div>

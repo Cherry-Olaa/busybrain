@@ -68,7 +68,7 @@ const Home = () => {
           className="container relative z-10 mx-auto flex min-h-[calc(100vh-9rem)] items-center"
         >
           <div className="mx-auto max-w-4xl text-center">
-            <h1 className=" text-4xl font-bold leading-tight md:text-5xl lg:text-6xl">
+            <h1 className=" text-xl font-bold leading-tight md:text-5xl lg:text-6xl">
               Welcome to
               <br />
               <span className="relative inline-block text-primary">
@@ -76,11 +76,11 @@ const Home = () => {
               </span>
             </h1>
 
-            <p className="mb-4 text-xl font-medium text-muted-foreground md:text-2xl">
+            <p className="mb-4 text-base font-medium text-muted-foreground md:text-2xl">
               Critical thinking for a brighter tomorrow
             </p>
 
-            <p className="mx-auto mb-8 max-w-2xl text-base text-muted-foreground md:text-lg">
+            <p className="mx-auto mb-8 sm:max-w-4xl text-xs text-muted-foreground md:text-lg">
               Empowering young minds with quality education, innovative teaching
               methods, and a commitment to excellence. Join us in shaping the
               leaders of tomorrow.
@@ -111,7 +111,7 @@ const Home = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-14 md:py-20 bg-muted/40 border-y border-border">
+      <section className="min-h-screen md:min-h-0 py-6 bg-muted/40 border-y border-border flex items-center">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
             {stats.map((stat, index) => {
@@ -135,11 +135,11 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 md:py-24 px-4">
-        <div className="container h-screen justify-center items-center flex flex-col bg-primary/10 mx-auto">
+      <section className="">
+        <div className="container min-h-screen p-4 justify-center items-center flex flex-col bg-primary/10 mx-auto">
           <div className="text-center mb-12 md:mb-16">
             {/* <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose BBS?</h2> */}
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 relative inline-block">
+            <h2 className="text-xl md:text-4xl font-bold mb-4 relative inline-block">
               Why Choose BBS?
               <span className="absolute left-1/2 -bottom-2 -translate-x-1/2 w-16 h-1 bg-yellow-400 rounded-full"></span>
             </h2>
@@ -180,10 +180,10 @@ const Home = () => {
         className="py-20 px-4 relative overflow-hidden"
       >
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-primary-foreground">
+          <h2 className="text-xl md:text-4xl font-bold mb-4 text-primary-foreground">
             Ready to Join Our Community?
           </h2>
-          <p className="text-base md:text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-xs md:text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
             Take the first step towards academic excellence. Contact us today to
             learn more about admissions.
           </p>
