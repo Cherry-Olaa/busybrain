@@ -1,103 +1,136 @@
-import { Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Menu, X, GraduationCap } from 'lucide-react';
-import { useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [role, setRole] = useState(null);
+  const navigate = useNavigate();
 
   const navigation = [
-    { name: 'Home', href: '/' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact', href: '/contact' },
-    { name: 'Results', href: '/results-check' },
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact", href: "/contact" },
+    { name: "Results", href: "/results-check" },
   ];
-  // inside Header component (top area)
-  const [role, setRole] = useState(localStorage.getItem("role"));
+
+  // sync role
+  useEffect(() => {
+    setRole(localStorage.getItem("role"));
+  }, []);
+
+  // lock body scroll when menu open
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
+  }, [mobileMenuOpen]);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
-    window.location.href = "/login";
+    setRole(null);
+    setMobileMenuOpen(false);
+    navigate("/login");
   };
-  return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 group">
-            {/* <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-primary flex items-center justify-center transition-transform group-hover:scale-105">
-              <GraduationCap className="w-6 h-6 md:w-7 md:h-7 text-primary-foreground" />
-            </div> */}
-            <img src="./logo-watermark.png" className='w-10 h-10 transition-transform group-hover:scale-105 rounded-full' alt="logo" />
-            <div className="flex flex-col">
-              <span className="text-lg md:text-xl font-bold text-foreground">BBS</span>
-              <span className="text-xs text-muted-foreground hidden sm:block">Critical Thinking</span>
-            </div>
-          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {item.name}
-              </Link>
-            ))}
-            <Link to="/login">
-              <Button variant="default" className="bg-primary hover:bg-primary/90">
-                Login
-              </Button>
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
+  const AuthActions = ({ mobile = false }) => {
+    if (role) {
+      return (
+        <div
+          className={`flex gap-3 ${
+            mobile ? "flex-col items-start mt-auto" : "items-center"
+          }`}
+        >
+          <span className="text-sm text-muted-foreground">{role}</span>
           <button
-            className="md:hidden p-2 text-foreground"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={handleLogout}
+            className="text-sm text-destructive hover:underline"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            Logout
           </button>
         </div>
+      );
+    }
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <div className="flex flex-col gap-4">
+    return (
+      <Link
+        to="/login"
+        onClick={() => setMobileMenuOpen(false)}
+        className={mobile ? "mt-auto w-full" : ""}
+      >
+        <Button className={mobile ? "w-full" : ""}>Login</Button>
+      </Link>
+    );
+  };
+
+  return (
+    <>
+      {/* HEADER */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur border-b">
+        <nav className="container mx-auto px-4">
+          <div className="flex h-16 md:h-20 items-center justify-between">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-3">
+              <img
+                src="./logo-watermark.png"
+                alt="logo"
+                className="w-10 h-10 rounded-full"
+              />
+              <div>
+                <div className="font-bold text-lg">BBS</div>
+                <div className="text-xs text-muted-foreground hidden sm:block">
+                  Critical Thinking
+                </div>
+              </div>
+            </Link>
+
+            {/* Desktop nav */}
+            <div className="hidden md:flex items-center gap-8">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors py-2"
-                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-sm text-muted-foreground hover:text-foreground"
                 >
                   {item.name}
                 </Link>
               ))}
-              <Link to="/login" onClick={() => setMobileMenuOpen(false)}>
-                <Button variant="default" className="w-full bg-primary hover:bg-primary/90">
-                  Login
-                </Button>
+              <AuthActions />
+            </div>
+
+            {/* Mobile toggle */}
+            <button
+              className="md:hidden"
+              onClick={() => setMobileMenuOpen((p) => !p)}
+            >
+              {mobileMenuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* MOBILE MENU OVERLAY */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 top-16 z-40 md:hidden bg-background flex flex-col px-4 py-6">
+          {/* Links */}
+          <div className="flex flex-col gap-6">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-sm text-muted-foreground hover:text-foreground"
+              >
+                {item.name}
               </Link>
-            </div>
-            <div className="ml-4">
-              {role ? (
-                <div className="flex items-center gap-2">
-                  <span className="text-sm text-muted-foreground">{role}</span>
-                  <button onClick={handleLogout} className="text-sm text-destructive">Logout</button>
-                </div>
-              ) : (
-                <Link to="/login"><Button>Login</Button></Link>
-              )}
-            </div>
+            ))}
           </div>
 
-
-        )}
-      </nav>
-    </header>
+          {/* Auth at bottom */}
+          <AuthActions mobile />
+        </div>
+      )}
+    </>
   );
 };
 
