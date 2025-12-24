@@ -34,7 +34,7 @@ const Login = () => {
         ? { admissionNumber: formData.username, password: formData.password }
         : { username: formData.username, password: formData.password };
 
-      const res = await fetch('https://api.busybrainschool.com/api/auth/login', {
+      const res = await fetch('https://api.busybrainschools.com/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

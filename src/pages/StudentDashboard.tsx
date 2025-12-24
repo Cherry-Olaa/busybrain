@@ -80,7 +80,7 @@ export default function StudentDashboard() {
         (async () => {
             try {
                 // Fetch student info
-                const res = await fetch("https://api.busybrainschool.com/api/students/me", {
+                const res = await fetch("https://api.busybrainschools.com/api/students/me", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
                 if (!res.ok) throw new Error("Unable to fetch student data");
@@ -89,7 +89,7 @@ export default function StudentDashboard() {
 
                 // Fetch results for this student
                 const rRes = await fetch(
-                    `https://api.busybrainschool.com/api/results?studentId=${data._id}`,
+                    `https://api.busybrainschools.com/api/results?studentId=${data._id}`,
                     {
                         headers: { Authorization: `Bearer ${token}` },
                     }

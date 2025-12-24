@@ -22,8 +22,8 @@ export default function AdminDashboard() {
         (async () => {
             try {
                 const [sRes, studentsRes] = await Promise.all([
-                    fetch("https://api.busybrainschool.com/api/admin/dashboard/stats", { headers: { Authorization: `Bearer ${token}` } }),
-                    fetch("https://api.busybrainschool.com/api/admin/student/list?limit=10", { headers: { Authorization: `Bearer ${token}` } }),
+                    fetch("https://api.busybrainschools.com/api/admin/dashboard/stats", { headers: { Authorization: `Bearer ${token}` } }),
+                    fetch("https://api.busybrainschools.com/api/admin/student/list?limit=10", { headers: { Authorization: `Bearer ${token}` } }),
                 ]);
 
                 // If your backend doesn't have dashboard/stats, the code below gracefully falls back.

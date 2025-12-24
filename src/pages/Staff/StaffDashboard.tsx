@@ -133,7 +133,7 @@ export default function StaffDashboard() {
         (async () => {
             try {
                 // Fetch staff dashboard stats
-                const res = await fetch("https://api.busybrainschool.com/api/staff/dashboard/stats", {
+                const res = await fetch("https://api.busybrainschools.com/api/staff/dashboard/stats", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 

@@ -42,7 +42,7 @@ export default function StaffViewStudentResult() {
         (async () => {
             try {
                 const res = await fetch(
-                    `https://api.busybrainschool.com/api/staff/results/student/${studentId}`,
+                    `https://api.busybrainschools.com/api/staff/results/student/${studentId}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,
