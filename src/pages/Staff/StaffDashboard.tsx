@@ -29,7 +29,7 @@
 //         (async () => {
 //             try {
 //                 // Fetch staff dashboard stats
-//                 const res = await fetch("http://localhost:4000/api/staff/dashboard/stats", {
+//                 const res = await fetch("https://api.busybrainschool.com//api/staff/dashboard/stats", {
 //                     headers: { Authorization: `Bearer ${token}` },
 //                 });
 
@@ -133,7 +133,7 @@ export default function StaffDashboard() {
         (async () => {
             try {
                 // Fetch staff dashboard stats
-                const res = await fetch("http://localhost:4000/api/staff/dashboard/stats", {
+                const res = await fetch("https://api.busybrainschool.com//api/staff/dashboard/stats", {
                     headers: { Authorization: `Bearer ${token}` },
                 });
 

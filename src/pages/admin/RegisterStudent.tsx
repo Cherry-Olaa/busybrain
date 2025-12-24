@@ -48,7 +48,7 @@ export default function RegisterStudent() {
             if (form.classId) fd.append("classId", form.classId);
             if (passport) fd.append("passport", passport);
 
-            const res = await fetch("http://localhost:4000/api/admin/student/create", {
+            const res = await fetch("https://api.busybrainschool.com//api/admin/student/create", {
                 method: "POST",
                 headers: { Authorization: `Bearer ${token}` }, // fetch will set content-type automatically for FormData
                 body: fd,
