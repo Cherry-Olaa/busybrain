@@ -73,11 +73,11 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                <span>12 Unity Avenue, Lagos, Nigeria</span>
+                <span>79, Beside Total Comfort Filling Station, Sobi Road, Ilorin, Kwara State, Nigeria</span>
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Phone className="w-4 h-4 flex-shrink-0" />
-                <span>+234 801 234 5678</span>
+                <span>+234 810 815 5707</span>
               </li>
               <li className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Mail className="w-4 h-4 flex-shrink-0" />

@@ -53,12 +53,12 @@ const Contact = () => {
     {
       icon: MapPin,
       title: "Address",
-      content: "12 Unity Avenue, Lagos, Nigeria",
+      content: "79, Beside Total Comfort Filling Station, Sobi Road, Ilorin, Kwara State, Nigeria",
     },
     {
       icon: Phone,
       title: "Phone",
-      content: "+234 801 234 5678",
+      content: "+234 810 815 5707",
     },
     {
       icon: Mail,
