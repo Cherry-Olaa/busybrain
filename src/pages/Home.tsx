@@ -335,7 +335,7 @@ const Home = () => {
                 </Button>
               </Link>
 
-              <Link to="/results-check">
+              <Link to="/login">
                 <Button
                   size="lg"
                   variant="outline"
