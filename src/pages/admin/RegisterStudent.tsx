@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from "react-router-dom";
+import axios from "@/lib/api";
 
 export default function RegisterStudent() {
     const [form, setForm] = useState({
@@ -48,20 +49,27 @@ export default function RegisterStudent() {
             if (form.classId) fd.append("classId", form.classId);
             if (passport) fd.append("passport", passport);
 
-            const res = await fetch("https://api.busybrainschools.com/api/admin/student/create", {
-                method: "POST",
-                headers: { Authorization: `Bearer ${token}` }, // fetch will set content-type automatically for FormData
-                body: fd,
+            const res = await axios.post("/admin/student/create", fd, {
+                headers: { 
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "multipart/form-data"
+                }
             });
 
-            const data = await res.json();
-            if (!res.ok) throw new Error(data.message || data.msg || "Failed to create");
-
-            toast({ title: "Student Registered", description: "Initial password returned in response" });
-            // optionally navigate to students list
+            toast({ 
+                title: "Student Registered", 
+                description: res.data.message || "Student created successfully",
+                variant: "default" 
+            });
+            
             navigate("/admin/students");
         } catch (err: any) {
-            toast({ title: "Error", description: err.message, variant: "destructive" });
+            console.error("Registration error:", err);
+            toast({ 
+                title: "Error", 
+                description: err.response?.data?.message || err.message || "Failed to create student", 
+                variant: "destructive" 
+            });
         } finally {
             setLoading(false);
         }
