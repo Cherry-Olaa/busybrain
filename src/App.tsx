@@ -102,8 +102,6 @@
 // };
 
 // export default App;
-
-
 import { useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -115,53 +113,61 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 
+// Public Pages
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import StudentResults from "./pages/ResultsCheck";
-import ResultsAdmin from "./pages/ResultsAdmin";
+import Careers from "./pages/Careers";
+import KidsZone from "./pages/public/KidsZone";
+import GameTemplate from "@/pages/games/GameTemplate";
 import NotFound from "./pages/NotFound";
-import StudentDashboard from "./pages/StudentDashboard";
-import ProtectedRoute from "./components/ProtectedRoute";
+
+// Admin Pages
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import RegisterStudent from "@/pages/admin/RegisterStudent";
 import ResultUpload from "@/pages/admin/ResultUpload";
 import StudentsList from "@/pages/admin/StudentsList";
+import StudentDetails from "@/pages/admin/StudentDetails";
+import EditStudent from "@/pages/admin/EditStudent";
+import StudentManagement from "@/pages/admin/StudentManagement";
 import CreatStaff from "@/pages/admin/CreateStaff";
 import StaffList from "./pages/admin/StaffList";
+import StaffManagement from "@/pages/admin/StaffManagement";
 import Settings from "./pages/admin/Settings";
+import ResultsAdmin from "./pages/ResultsAdmin";
+import ClassSubjects from "@/pages/admin/ClassSubjects";
+import JobManagement from "@/pages/admin/JobManagement";
+import CreateJob from "@/pages/admin/CreateJob";
+import JobApplications from "@/pages/admin/JobApplications";
+
+// Staff Pages
 import StaffDashboard from "./pages/Staff/StaffDashboard";
 import StaffResult from "./pages/Staff/StaffResult";
 import StaffSettings from "./pages/Staff/settings";
 import StaffViewStudentResult from "./pages/Staff/staffViewStudentResult";
-// In App.tsx, add this route
-import ClassSubjects from "@/pages/admin/ClassSubjects";
-// In App.tsx, add this import
-import StudentManagement from "@/pages/admin/StudentManagement";
-// In App.tsx, add this import
-import StudentDetails from "@/pages/admin/StudentDetails";
-
-
-import GameTemplate from "@/pages/games/GameTemplate";
-
-
-
-// App.tsx - Add this import
-import StaffManagement from "@/pages/admin/StaffManagement";
-// In App.tsx, add this import
-import EditStudent from "@/pages/admin/EditStudent";
-
-// src/App.tsx
-import { ScrollToTop } from "./components/ScrollToTop";
-// In App.tsx, add this import
-import Games from "@/pages/student/Games";
-import KidsZone from "@/pages/public/KidsZone";
-
-
-// NEW IMPORTS
 import SubjectRegistration from "./pages/Staff/SubjectRegistration";
 import StaffBulkResultUpload from "./pages/Staff/StaffResult";
+
+// Student Pages
+import StudentDashboard from "./pages/StudentDashboard";
+import Games from "@/pages/student/Games";
+// Add this import
+import JobDetails from "./pages/JobDetails";
+
+// Add this route in the PUBLIC ROUTES section
+
+// Components
+import ProtectedRoute from "./components/ProtectedRoute";
+import { ScrollToTop } from "./components/ScrollToTop";
+// Add imports
+
+import ApplyJob from "./pages/ApplyJob";
+// Add import
+import ApplicationSuccess from "./pages/ApplicationSuccess";
+
+
 
 const queryClient = new QueryClient();
 
@@ -173,8 +179,7 @@ const App = () => {
       once: false,
       offset: 100,
     });
-
-    AOS.refresh(); // ensures animations work after route changes
+    AOS.refresh();
   }, []);
 
   return (
@@ -184,32 +189,39 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <ScrollToTop /> {/* Add this line */}
+            <ScrollToTop />
             <Routes>
-              {/* Public Routes */}
+              {/* ============ PUBLIC ROUTES ============ */}
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
               <Route path="/results-check" element={<StudentResults />} />
-              // Add this route
-              <Route path="/admin/student-management" element={
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/kids-zone" element={<KidsZone />} />
+              <Route path="/games/:gameId" element={<GameTemplate />} />
+              <Route path="/careers/:slug" element={<JobDetails />} />
+
+              <Route path="/apply/:slug" element={<ApplyJob />} />
+        
+              <Route path="/careers/:slug/success" element={<ApplicationSuccess />} />
+
+              {/* ============ ADMIN ROUTES ============ */}
+              <Route path="/admin" element={
                 <ProtectedRoute allowedRoles={["admin"]}>
-                  <StudentManagement />
+                  <AdminDashboard />
                 </ProtectedRoute>
               } />
-              {/* Admin Routes */}
-              // Add this route
+
+              {/* Student Management */}
+              <Route path="/admin/students" element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <StudentsList />
+                </ProtectedRoute>
+              } />
               <Route path="/admin/students/:id" element={
                 <ProtectedRoute allowedRoles={["admin"]}>
                   <StudentDetails />
-                </ProtectedRoute>
-              } />
-              <Route path="/kids-zone" element={<KidsZone />} />
-
-              <Route path="/student/games" element={
-                <ProtectedRoute allowedRoles={["student"]}>
-                  <Games />
                 </ProtectedRoute>
               } />
               <Route path="/admin/students/edit/:id" element={
@@ -217,43 +229,9 @@ const App = () => {
                   <EditStudent />
                 </ProtectedRoute>
               } />
-              <Route path="/games/:gameId" element={<GameTemplate />} />
-              // Add this route
-              <Route path="/admin/staff-management" element={
+              <Route path="/admin/student-management" element={
                 <ProtectedRoute allowedRoles={["admin"]}>
-                  <StaffManagement />
-                </ProtectedRoute>
-              } />
-              // Add to your admin routes
-              <Route path="/admin/class-subjects" element={
-                <ProtectedRoute allowedRoles={["admin"]}>
-                  <ClassSubjects />
-                </ProtectedRoute>
-              } />
-
-              <Route path="/admin" element={
-                <ProtectedRoute allowedRoles={["admin"]}>
-                  <AdminDashboard />
-                </ProtectedRoute>
-              } />
-              <Route path="/admin/students" element={
-                <ProtectedRoute allowedRoles={["admin"]}>
-                  <StudentsList />
-                </ProtectedRoute>
-              } />
-              <Route path="/admin/results" element={
-                <ProtectedRoute allowedRoles={["admin"]}>
-                  <ResultUpload />
-                </ProtectedRoute>
-              } />
-              <Route path="/admin/create-staff" element={
-                <ProtectedRoute allowedRoles={["admin"]}>
-                  <CreatStaff />
-                </ProtectedRoute>
-              } />
-              <Route path="/admin/staff" element={
-                <ProtectedRoute allowedRoles={["admin"]}>
-                  <StaffList />
+                  <StudentManagement />
                 </ProtectedRoute>
               } />
               <Route path="/admin/register-student" element={
@@ -261,9 +239,33 @@ const App = () => {
                   <RegisterStudent />
                 </ProtectedRoute>
               } />
-              <Route path="/admin/settings" element={
+
+              {/* Staff Management */}
+              <Route path="/admin/staff" element={
                 <ProtectedRoute allowedRoles={["admin"]}>
-                  <Settings />
+                  <StaffList />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/create-staff" element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <CreatStaff />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/staff-management" element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <StaffManagement />
+                </ProtectedRoute>
+              } />
+
+              {/* Academic Management */}
+              <Route path="/admin/class-subjects" element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <ClassSubjects />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/results" element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <ResultUpload />
                 </ProtectedRoute>
               } />
               <Route path="/results-admin" element={
@@ -272,7 +274,36 @@ const App = () => {
                 </ProtectedRoute>
               } />
 
-              {/* Staff Routes */}
+              {/* Job Management */}
+              <Route path="/admin/jobs" element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <JobManagement />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/jobs/create" element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <CreateJob />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/jobs/edit/:id" element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <CreateJob />
+                </ProtectedRoute>
+              } />
+              <Route path="/admin/jobs/:jobId/applications" element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <JobApplications />
+                </ProtectedRoute>
+              } />
+
+              {/* Settings */}
+              <Route path="/admin/settings" element={
+                <ProtectedRoute allowedRoles={["admin"]}>
+                  <Settings />
+                </ProtectedRoute>
+              } />
+
+              {/* ============ STAFF ROUTES ============ */}
               <Route path="/staff" element={
                 <ProtectedRoute allowedRoles={["staff"]}>
                   <StaffDashboard />
@@ -304,14 +335,19 @@ const App = () => {
                 </ProtectedRoute>
               } />
 
-              {/* Student Routes */}
+              {/* ============ STUDENT ROUTES ============ */}
               <Route path="/dashboard-student" element={
                 <ProtectedRoute allowedRoles={["student"]}>
                   <StudentDashboard />
                 </ProtectedRoute>
               } />
+              <Route path="/student/games" element={
+                <ProtectedRoute allowedRoles={["student"]}>
+                  <Games />
+                </ProtectedRoute>
+              } />
 
-              {/* Catch-all */}
+              {/* ============ CATCH-ALL ============ */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>

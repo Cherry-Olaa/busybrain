@@ -135,11 +135,9 @@
 // };
 
 // export default Header;
-
-
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sparkles, Star, Smile, Moon, Sun } from "lucide-react";
+import { Menu, X, Sparkles, Star, Smile, Moon, Sun, Briefcase } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const Header = () => {
@@ -150,11 +148,10 @@ const Header = () => {
   const navigation = [
     { name: "Home", href: "/", icon: "🏠" },
     { name: "About Us", href: "/about", icon: "📚" },
-    { name: "Contact", href: "/contact", icon: "📞" },
-    // In Header.tsx, add to navigation
+    { name: "Careers", href: "/careers", icon: "💼" }, // Added Careers
     { name: "Kids Zone", href: "/kids-zone", icon: "🎮" },
+    { name: "Contact", href: "/contact", icon: "📞" },
     { name: "Results", href: "/login", icon: "⭐" },
-
   ];
 
   // sync role

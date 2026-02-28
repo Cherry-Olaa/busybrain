@@ -1,13 +1,13 @@
 // src/components/admin/AdminSidebar.tsx
 import { Link, useLocation } from "react-router-dom";
-import { 
-  Users, 
-  PlusCircle, 
-  FileText, 
-  Settings, 
-  Grid, 
-  BookOpen, 
-  UserCog, 
+import {
+  Users,
+  PlusCircle,
+  FileText,
+  Settings,
+  Grid,
+  BookOpen,
+  UserCog,
   UserCheck,
   UserPlus,
   List,
@@ -16,28 +16,33 @@ import {
   LogOut
 } from "lucide-react";
 import cn from "clsx";
+// Add Briefcase icon to imports
+import { Briefcase } from "lucide-react";
+
 
 const nav = [
   // Dashboard
   { name: "Dashboard", to: "/admin", icon: Grid },
-  
+
   // Separator
   { type: "separator", label: "STUDENTS" },
   { name: "Register Student", to: "/admin/register-student", icon: UserPlus },
   { name: "Students List", to: "/admin/students", icon: List },
   { name: "Student Management", to: "/admin/student-management", icon: UserCheck },
-  
+
   // Separator
   { type: "separator", label: "STAFF" },
   { name: "Create Staff", to: "/admin/create-staff", icon: UserPlus },
   { name: "Staff List", to: "/admin/staff", icon: List },
   { name: "Staff Management", to: "/admin/staff-management", icon: Shield },
-  
+
   // Separator
   { type: "separator", label: "ACADEMIC" },
   { name: "Class Subjects", to: "/admin/class-subjects", icon: BookOpen },
   { name: "Results", to: "/admin/results", icon: FileText },
-  
+  // Add to nav array under ACADEMIC section
+
+  { name: "Job Management", to: "/admin/jobs", icon: Briefcase }, // New
   // Separator
   { type: "separator", label: "SYSTEM" },
   { name: "Settings", to: "/admin/settings", icon: Settings },
@@ -53,10 +58,10 @@ export default function AdminSidebar() {
     >
       <div className="mb-8 flex items-center gap-3">
         {/* ✅ FIX: Use absolute path from public directory */}
-        <img 
-          src="/logo-watermark.png" 
-          className='w-10 h-10 transition-transform group-hover:scale-105 rounded-full' 
-          alt="logo" 
+        <img
+          src="/logo-watermark.png"
+          className='w-10 h-10 transition-transform group-hover:scale-105 rounded-full'
+          alt="logo"
         />
         <div>
           <div className="font-bold text-lg">BUSY BRAINS</div>
