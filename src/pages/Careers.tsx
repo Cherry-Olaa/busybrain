@@ -327,7 +327,7 @@ export default function Careers() {
                         </span>
                         {formatSalary(job) && (
                           <span className="inline-flex items-center gap-1.5 text-sm text-slate-700 bg-slate-100 px-3 py-1 rounded-full">
-                            <DollarSign size={14} className="text-slate-500" />
+                          
                             {formatSalary(job)}
                           </span>
                         )}
