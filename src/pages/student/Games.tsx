@@ -158,14 +158,19 @@ export default function Games() {
         }
     ];
 
+    // ✅ FIXED: Reset all state when starting a new game
     const startGame = (gameId: string) => {
-        setSelectedGame(gameId);
-        setGameStarted(true);
+        // Reset all game state first
+        setSelectedAnswer(null);
+        setShowFeedback(false);
         setCurrentQuestion(0);
         setScore(0);
         setShowResult(false);
         setTimeLeft(30);
+        setGameStarted(true);
+        setSelectedGame(gameId);
 
+        // Set questions based on game
         switch(gameId) {
             case "math-quiz":
                 setQuestions(mathQuestions);
@@ -195,7 +200,7 @@ export default function Games() {
             timer = setTimeout(() => {
                 setTimeLeft(prev => prev - 1);
             }, 1000);
-        } else if (timeLeft === 0 && !showFeedback) {
+        } else if (timeLeft === 0 && !showFeedback && gameStarted) {
             handleTimeout();
         }
         return () => clearTimeout(timer);
@@ -241,6 +246,7 @@ export default function Games() {
         }
     };
 
+    // ✅ FIXED: Properly reset all state when restarting
     const restartGame = () => {
         setSelectedGame(null);
         setGameStarted(false);
@@ -250,9 +256,11 @@ export default function Games() {
         setSelectedAnswer(null);
         setShowFeedback(false);
         setTimeLeft(30);
+        setQuestions([]); // Clear questions to prevent any lingering state
     };
 
     const getScoreMessage = () => {
+        if (questions.length === 0) return "";
         const percentage = (score / (questions.length * 10)) * 100;
         if (percentage >= 80) return "🌟 Amazing! You're a star! 🌟";
         if (percentage >= 60) return "✨ Good job! Keep shining! ✨";

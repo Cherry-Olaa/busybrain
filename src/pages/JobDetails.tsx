@@ -16,7 +16,8 @@ import {
   Loader2,
   CheckCircle,
   XCircle,
-  AlertCircle
+  AlertCircle,
+  Users
 } from "lucide-react";
 
 interface Job {
@@ -106,7 +107,7 @@ export default function JobDetails() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-yellow-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <Loader2 className="w-8 h-8 text-amber-500 animate-spin" />
       </div>
     );
@@ -114,13 +115,13 @@ export default function JobDetails() {
 
   if (!job) {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-yellow-50 flex items-center justify-center">
-        <Card className="p-8 text-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <Card className="p-8 text-center bg-white shadow-md border border-slate-200">
           <XCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
-          <h2 className="text-xl font-bold mb-2">Job Not Found</h2>
-          <p className="text-gray-600 mb-4">The job you're looking for doesn't exist.</p>
+          <h2 className="text-xl font-bold text-slate-900 mb-2">Job Not Found</h2>
+          <p className="text-slate-700 mb-4">The job you're looking for doesn't exist.</p>
           <Link to="/careers">
-            <Button className="bg-amber-500 hover:bg-amber-600">
+            <Button className="bg-amber-500 hover:bg-amber-600 text-white">
               Back to Careers
             </Button>
           </Link>
@@ -132,19 +133,19 @@ export default function JobDetails() {
   const deadlinePassed = isDeadlinePassed(job.applicationDeadline);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-50 to-yellow-50 py-8">
+    <div className="min-h-screen bg-slate-50 py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Back Button */}
         <Link
           to="/careers"
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-6 transition-colors"
+          className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 mb-6 transition-colors"
         >
           <ChevronLeft size={20} />
           Back to All Jobs
         </Link>
 
         {/* Job Header */}
-        <Card className="p-6 mb-6 relative overflow-hidden">
+        <Card className="p-6 mb-6 relative overflow-hidden bg-white border border-slate-200 shadow-md">
           {job.isUrgent && (
             <div className="absolute top-0 right-0 bg-red-500 text-white px-4 py-1 text-sm font-medium rounded-bl-lg">
               <AlertCircle size={16} className="inline mr-1" />
@@ -154,32 +155,39 @@ export default function JobDetails() {
           
           <div className="flex flex-col md:flex-row justify-between items-start gap-4">
             <div>
-              <h1 className="text-3xl font-bold text-gray-800 mb-2">{job.title}</h1>
+              <div className="flex items-center gap-3 mb-2">
+                <h1 className="text-3xl font-bold text-slate-900">{job.title}</h1>
+                {job.isUrgent && (
+                  <span className="px-2 py-1 bg-red-100 text-red-700 text-xs font-medium rounded-full border border-red-200">
+                    Urgent
+                  </span>
+                )}
+              </div>
               <p className="text-lg text-amber-600 mb-4">{job.department}</p>
               
-              <div className="flex flex-wrap gap-4">
-                <span className="flex items-center gap-1 text-sm text-gray-600">
-                  <MapPin size={16} className="text-amber-500" />
+              <div className="flex flex-wrap gap-3">
+                <span className="inline-flex items-center gap-1.5 text-sm text-slate-700 bg-slate-100 px-3 py-1 rounded-full">
+                  <MapPin size={14} className="text-slate-500" />
                   {job.location}
                 </span>
-                <span className="flex items-center gap-1 text-sm text-gray-600">
-                  <Briefcase size={16} className="text-amber-500" />
+                <span className="inline-flex items-center gap-1.5 text-sm text-slate-700 bg-slate-100 px-3 py-1 rounded-full">
+                  <Briefcase size={14} className="text-slate-500" />
                   {job.type}
                 </span>
-                <span className="flex items-center gap-1 text-sm text-gray-600">
-                  <Clock size={16} className="text-amber-500" />
+                <span className="inline-flex items-center gap-1.5 text-sm text-slate-700 bg-slate-100 px-3 py-1 rounded-full">
+                  <Clock size={14} className="text-slate-500" />
                   {job.experience}
                 </span>
-                <span className="flex items-center gap-1 text-sm text-gray-600">
-                  <DollarSign size={16} className="text-amber-500" />
+                <span className="inline-flex items-center gap-1.5 text-sm text-slate-700 bg-slate-100 px-3 py-1 rounded-full">
+                  <DollarSign size={14} className="text-slate-500" />
                   {formatSalary(job.salary)}
                 </span>
               </div>
             </div>
 
             <div className="text-right">
-              <div className="text-sm text-gray-500 mb-2">
-                <Calendar size={16} className="inline mr-1" />
+              <div className="text-sm text-slate-600 mb-2">
+                <Calendar size={16} className="inline mr-1 text-slate-500" />
                 Deadline: {formatDate(job.applicationDeadline)}
               </div>
               {deadlinePassed && (
@@ -192,17 +200,17 @@ export default function JobDetails() {
         </Card>
 
         {/* Job Description */}
-        <Card className="p-6 mb-6">
-          <h2 className="text-xl font-bold mb-4 text-gray-800">Job Description</h2>
-          <p className="text-gray-600 whitespace-pre-line">{job.description}</p>
+        <Card className="p-6 mb-6 bg-white border border-slate-200 shadow-md">
+          <h2 className="text-xl font-bold mb-4 text-slate-900">Job Description</h2>
+          <p className="text-slate-700 whitespace-pre-line">{job.description}</p>
         </Card>
 
         {/* Responsibilities */}
-        <Card className="p-6 mb-6">
-          <h2 className="text-xl font-bold mb-4 text-gray-800">Key Responsibilities</h2>
+        <Card className="p-6 mb-6 bg-white border border-slate-200 shadow-md">
+          <h2 className="text-xl font-bold mb-4 text-slate-900">Key Responsibilities</h2>
           <ul className="space-y-2">
             {job.responsibilities.map((item, index) => (
-              <li key={index} className="flex gap-2 text-gray-600">
+              <li key={index} className="flex gap-2 text-slate-700">
                 <CheckCircle size={18} className="text-green-500 flex-shrink-0 mt-0.5" />
                 <span>{item}</span>
               </li>
@@ -211,11 +219,11 @@ export default function JobDetails() {
         </Card>
 
         {/* Requirements */}
-        <Card className="p-6 mb-6">
-          <h2 className="text-xl font-bold mb-4 text-gray-800">Requirements</h2>
+        <Card className="p-6 mb-6 bg-white border border-slate-200 shadow-md">
+          <h2 className="text-xl font-bold mb-4 text-slate-900">Requirements</h2>
           <ul className="space-y-2">
             {job.requirements.map((item, index) => (
-              <li key={index} className="flex gap-2 text-gray-600">
+              <li key={index} className="flex gap-2 text-slate-700">
                 <CheckCircle size={18} className="text-amber-500 flex-shrink-0 mt-0.5" />
                 <span>{item}</span>
               </li>
@@ -225,11 +233,11 @@ export default function JobDetails() {
 
         {/* Benefits */}
         {job.benefits && job.benefits.length > 0 && (
-          <Card className="p-6 mb-6">
-            <h2 className="text-xl font-bold mb-4 text-gray-800">Benefits</h2>
+          <Card className="p-6 mb-6 bg-white border border-slate-200 shadow-md">
+            <h2 className="text-xl font-bold mb-4 text-slate-900">Benefits</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {job.benefits.map((item, index) => (
-                <div key={index} className="flex items-center gap-2 text-gray-600">
+                <div key={index} className="flex items-center gap-2 text-slate-700">
                   <Award size={16} className="text-amber-500" />
                   <span>{item}</span>
                 </div>
@@ -238,22 +246,27 @@ export default function JobDetails() {
           </Card>
         )}
 
+        {/* Stats Card */}
+        <Card className="p-4 mb-6 bg-amber-50 border border-amber-200">
+          <div className="flex items-center justify-center gap-2 text-amber-800">
+            <Users size={18} />
+            <span>{job.views} people have viewed this position</span>
+          </div>
+        </Card>
+
         {/* Apply Button */}
         <div className="text-center">
           <Link to={`/apply/${job.slug}`}>
             <Button
               size="lg"
               disabled={deadlinePassed}
-              className={`bg-amber-500 hover:bg-amber-600 text-white px-12 py-6 text-lg ${
+              className={`bg-amber-500 hover:bg-amber-600 text-white px-12 py-6 text-lg shadow-md hover:shadow-lg transition-all ${
                 deadlinePassed ? 'opacity-50 cursor-not-allowed' : ''
               }`}
             >
               {deadlinePassed ? 'Applications Closed' : 'Apply for this Position'}
             </Button>
           </Link>
-          <p className="text-sm text-gray-500 mt-4">
-            {job.views} people have viewed this position
-          </p>
         </div>
       </div>
     </div>

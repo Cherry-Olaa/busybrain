@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import {
     Gamepad2,
     Brain,
@@ -19,7 +21,8 @@ import {
     Lock,
     Unlock,
     GraduationCap,
-    Users
+    Users,
+    Home
 } from "lucide-react";
 
 interface Game {
@@ -131,32 +134,47 @@ export default function KidsZone() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-amber-100 via-yellow-100 to-orange-100">
-            {/* Hero Section */}
-            <div className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white py-12">
-                <div className="container mx-auto px-4 text-center">
-                    <div className="inline-flex justify-center mb-4 relative">
-                        <Gamepad2 className="w-16 h-16" />
-                        <Sparkles className="absolute -top-2 -right-2 w-6 h-6 text-yellow-300 animate-ping" />
-                    </div>
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">🎮 Kids Learning Zone</h1>
-                    <p className="text-xl mb-6 max-w-2xl mx-auto">
-                        Fun educational games for everyone! Play for free and learn while having fun!
-                    </p>
-                    
-                    {/* CTA Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link to="/contact">
-                            <Button className="bg-white text-amber-600 hover:bg-amber-50 font-bold px-8 py-6 rounded-xl text-lg shadow-lg transform hover:scale-105 transition-all">
-                                <GraduationCap className="w-5 h-5 mr-2" />
-                                Enroll Your Child
-                            </Button>
-                        </Link>
-                        <Link to="/login">
-                            <Button variant="outline" className="border-2 border-white text-white hover:bg-white/20 font-bold px-8 py-6 rounded-xl text-lg">
-                                <Users className="w-5 h-5 mr-2" />
-                                Student Login
-                            </Button>
-                        </Link>
+            <Header />
+            
+            {/* Hero Section - Added padding-top for fixed header */}
+            <div className="bg-gradient-to-r from-amber-500 to-yellow-500 text-white pt-24 md:pt-28">
+                <div className="container mx-auto px-4 py-12">
+                    <div className="text-center">
+                        {/* Optional Back to Home button */}
+                        <div className="mb-6">
+                            <Link 
+                                to="/" 
+                                className="inline-flex items-center gap-2 text-white/80 hover:text-white transition-colors text-sm"
+                            >
+                                <Home size={16} />
+                                Back to Home
+                            </Link>
+                        </div>
+                        
+                        <div className="inline-flex justify-center mb-4 relative">
+                            <Gamepad2 className="w-16 h-16" />
+                            <Sparkles className="absolute -top-2 -right-2 w-6 h-6 text-yellow-300 animate-ping" />
+                        </div>
+                        <h1 className="text-4xl md:text-5xl font-bold mb-4">🎮 Kids Learning Zone</h1>
+                        <p className="text-xl mb-6 max-w-2xl mx-auto">
+                            Fun educational games for everyone! Play for free and learn while having fun!
+                        </p>
+                        
+                        {/* CTA Buttons */}
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                            <Link to="/contact">
+                                <Button className="bg-white text-amber-600 hover:bg-amber-50 font-bold px-8 py-6 rounded-xl text-lg shadow-lg transform hover:scale-105 transition-all">
+                                    <GraduationCap className="w-5 h-5 mr-2" />
+                                    Enroll Your Child
+                                </Button>
+                            </Link>
+                            <Link to="/login">
+                                <Button variant="outline" className="border-2 border-white text-white hover:bg-white/20 font-bold px-8 py-6 rounded-xl text-lg">
+                                    <Users className="w-5 h-5 mr-2" />
+                                    Student Login
+                                </Button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -308,6 +326,8 @@ export default function KidsZone() {
                     </div>
                 </div>
             </div>
+            
+            <Footer />
         </div>
     );
 }

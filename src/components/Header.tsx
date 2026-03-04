@@ -133,8 +133,7 @@
 //     </>
 //   );
 // };
-
-// export default Header;
+// src/components/Header.tsx
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Sparkles, Star, Smile, Moon, Sun, Briefcase } from "lucide-react";
@@ -148,7 +147,7 @@ const Header = () => {
   const navigation = [
     { name: "Home", href: "/", icon: "🏠" },
     { name: "About Us", href: "/about", icon: "📚" },
-    { name: "Careers", href: "/careers", icon: "💼" }, // Added Careers
+    { name: "Careers", href: "/careers", icon: "💼" },
     { name: "Kids Zone", href: "/kids-zone", icon: "🎮" },
     { name: "Contact", href: "/contact", icon: "📞" },
     { name: "Results", href: "/login", icon: "⭐" },
@@ -159,17 +158,41 @@ const Header = () => {
     setRole(localStorage.getItem("role"));
   }, []);
 
-  // lock body scroll when menu open
+  // ✅ FIXED: lock/unlock body scroll when menu opens/closes
   useEffect(() => {
-    document.body.style.overflow = mobileMenuOpen ? "hidden" : "auto";
+    if (mobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    
+    // Cleanup function to ensure body scroll is restored when component unmounts
+    return () => {
+      document.body.style.overflow = "auto";
+    };
   }, [mobileMenuOpen]);
+
+  // ✅ FIXED: Ensure scroll is restored when navigating away
+  useEffect(() => {
+    // This will run when the component unmounts (navigation away)
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     setRole(null);
     setMobileMenuOpen(false);
+    document.body.style.overflow = "auto"; // Ensure scroll is restored
     navigate("/login");
+  };
+
+  // ✅ FIXED: Handle link click with proper scroll restoration
+  const handleLinkClick = () => {
+    setMobileMenuOpen(false);
+    document.body.style.overflow = "auto"; // Explicitly restore scroll
   };
 
   const AuthActions = ({ mobile = false }) => {
@@ -196,7 +219,10 @@ const Header = () => {
     return (
       <Link
         to="/login"
-        onClick={() => setMobileMenuOpen(false)}
+        onClick={() => {
+          setMobileMenuOpen(false);
+          document.body.style.overflow = "auto";
+        }}
         className={mobile ? "mt-auto w-full" : ""}
       >
         <Button className={`bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-white font-bold shadow-lg shadow-yellow-500/30 transform hover:scale-105 transition-all duration-300 ${mobile ? "w-full" : ""}`}>
@@ -223,7 +249,7 @@ const Header = () => {
         <nav className="container mx-auto px-4">
           <div className="flex h-16 md:h-20 items-center justify-between relative">
             {/* Logo with animation */}
-            <Link to="/" className="flex items-center gap-3 group">
+            <Link to="/" className="flex items-center gap-3 group" onClick={() => document.body.style.overflow = "auto"}>
               <div className="relative">
                 <img
                   src="/logo-watermark.png"
@@ -280,7 +306,7 @@ const Header = () => {
 
       {/* MOBILE MENU OVERLAY */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-16 z-40 md:hidden bg-gradient-to-b from-yellow-50 to-white flex flex-col px-6 py-8">
+        <div className="fixed inset-0 top-16 z-40 md:hidden bg-gradient-to-b from-yellow-50 to-white flex flex-col px-6 py-8 overflow-y-auto">
           {/* Decorative elements */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {[...Array(5)].map((_, i) => (
@@ -303,7 +329,7 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={handleLinkClick}
                 className="group flex items-center gap-3 p-3 rounded-xl bg-white/80 backdrop-blur-sm border-2 border-transparent hover:border-yellow-400 transition-all duration-300"
               >
                 <span className="text-2xl group-hover:animate-bounce">{item.icon}</span>
