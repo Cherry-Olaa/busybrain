@@ -254,19 +254,28 @@ export default function JobDetails() {
           </div>
         </Card>
 
-        {/* Apply Button */}
+        {/* Apply Button - FIXED: Conditionally render Link or disabled button */}
         <div className="text-center">
-          <Link to={`/apply/${job.slug}`}>
+          {deadlinePassed ? (
+            // If deadline passed, render a disabled button (not wrapped in Link)
             <Button
               size="lg"
-              disabled={deadlinePassed}
-              className={`bg-amber-500 hover:bg-amber-600 text-white px-12 py-6 text-lg shadow-md hover:shadow-lg transition-all ${
-                deadlinePassed ? 'opacity-50 cursor-not-allowed' : ''
-              }`}
+              disabled={true}
+              className="bg-amber-500 text-white px-12 py-6 text-lg opacity-50 cursor-not-allowed"
             >
-              {deadlinePassed ? 'Applications Closed' : 'Apply for this Position'}
+              Applications Closed
             </Button>
-          </Link>
+          ) : (
+            // If deadline not passed, wrap button in Link
+            <Link to={`/apply/${job.slug}`}>
+              <Button
+                size="lg"
+                className="bg-amber-500 hover:bg-amber-600 text-white px-12 py-6 text-lg shadow-md hover:shadow-lg transition-all"
+              >
+                Apply for this Position
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
     </div>
