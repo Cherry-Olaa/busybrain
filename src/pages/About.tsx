@@ -1,156 +1,3 @@
-// import Header from '@/components/Header';
-// import Footer from '@/components/Footer';
-// import { Card } from '@/components/ui/card';
-// import { Target, Eye, Heart, Award } from 'lucide-react';
-
-// const About = () => {
-//   const values = [
-//     {
-//       icon: Target,
-//       title: 'Excellence',
-//       description: 'We strive for excellence in everything we do, from teaching to student support.',
-//     },
-//     {
-//       icon: Heart,
-//       title: 'Integrity',
-//       description: 'We uphold the highest standards of honesty, ethics, and moral principles.',
-//     },
-//     {
-//       icon: Award,
-//       title: 'Innovation',
-//       description: 'We embrace innovative teaching methods and modern educational technologies.',
-//     },
-//     {
-//       icon: Eye,
-//       title: 'Vision',
-//       description: 'We envision a future where every student reaches their full potential.',
-//     },
-//   ];
-
-//   return (
-//     <div className="min-h-screen flex flex-col">
-//       <Header />
-      
-//       <main className="flex-1 ">
-//         {/* Hero Section */}
-//         <section className="bg-gradient-to-br from-background to-muted">
-//           <div className="containerh min-h-screen  justify-center items-center h-full flex flex-col mx-auto">
-//             <div className=" mx-auto text-center">
-//               <h1 className="text-xl md:text-5xl font-bold mb-6">About Us</h1>
-//               <p className="text-sm md:text-xl w-60 md:w-auto text-muted-foreground">
-//                 Learn more about BUSY BRAIN SCHOOLS and our commitment to educational excellence
-//               </p>
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* Mission Section */}
-//         <section className="">
-//           <div className="p-4 mx-auto">
-//             <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-//               <Card className="p-4 bg-card border-border">
-//                 <div className="flex items-center gap-3 mb-4">
-//                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-//                     <Target className="w-6 h-6 text-primary" />
-//                   </div>
-//                   <h2 className="text-xl md:text-3xl font-bold">Our Mission</h2>
-//                 </div>
-//                 <p className="text-muted-foreground text-xs leading-relaxed">
-//                 To provide a holistic education that blends qur’anic teachings and Prophetic traditions with Nigerian a global standards Fostering digital literacy, innovation, moral guidance and critical reflection we empower each child to discover their potential uphold integrity and contribute positively to society
-//                 </p>
-//               </Card>
-
-//               <Card className="p-4 bg-card border-border">
-//                 <div className="flex items-center gap-3 mb-4">
-//                   <div className="w-12 h-12 rounded-lg bg-secondary/10 flex items-center justify-center">
-//                     <Eye className="w-6 h-6 text-secondary" />
-//                   </div>
-//                   <h2 className="text-xl md:text-3xl font-bold">Our Vision</h2>
-//                 </div>
-//                 <p className="text-muted-foreground text-xs leading-relaxed">
-//                 To be model school that nurtures future-ready students. Enriched with the knowledge of life and its purpose through the Quran the traditions of the prophet (SAW). And guided critical thinking Raising individual who excel academically. Live by strong values and thrive in a fast-changing world
-//                 </p>
-//               </Card>
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* History Section */}
-//         <section className=" p-4 bg-muted/50">
-//           <div className="container mx-auto">
-//             <div className="max-w-4xl mx-auto">
-//               <h2 className="text-xl md:text-4xl font-bold mb-6 text-center">Our History</h2>
-//               <div className="prose prose-lg max-w-none text-muted-foreground">
-//                 <p className="mb-4 leading-relaxed text-xs">
-//                   BUSY BRAIN SCHOOLS was founded over 15 years ago with a simple yet powerful vision: 
-//                   to create an educational institution that nurtures critical thinking and academic excellence. 
-//                   What began as a small school with a handful of dedicated teachers and enthusiastic students 
-//                   has grown into one of the region's most respected educational institutions.
-//                 </p>
-//                 <p className="mb-4 leading-relaxed text-xs">
-//                   Throughout our journey, we have remained committed to our core values of excellence, integrity, 
-//                   and innovation. Our faculty comprises highly qualified and experienced educators who are passionate 
-//                   about teaching and dedicated to student success. We continuously invest in modern facilities, 
-//                   educational technology, and professional development to ensure our students receive the best possible education.
-//                 </p>
-//                 <p className="leading-relaxed text-xs">
-//                   Today, BUSY BRAIN SCHOOLS serves over 500 students across various grade levels, with a team of 
-//                   more than 50 dedicated staff members. Our alumni have gone on to excel in various fields, 
-//                   making significant contributions to society and carrying forward the values instilled during 
-//                   their time at BBS.
-//                 </p>
-//               </div>
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* Values Section */}
-//         <section className=" p-4">
-//           <div className=" mx-auto">
-//             <div className="text-center mb-12">
-//               <h2 className="text-xl md:text-4xl font-bold mb-4">Our Core Values</h2>
-//               <p className="text-sm text-muted-foreground max-w-2xl mx-auto">
-//                 The principles that guide everything we do at BUSY BRAIN SCHOOLS
-//               </p>
-//             </div>
-            
-//             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-//               {values.map((value, index) => {
-//                 const Icon = value.icon;
-//                 return (
-//                   <Card key={index} className="p-4 text-center hover:shadow-lg transition-all duration-300 bg-card border-border">
-//                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4">
-//                       <Icon className="w-8 h-8 text-primary" />
-//                     </div>
-//                     <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
-//                     <p className="text-muted-foreground text-sm">{value.description}</p>
-//                   </Card>
-//                 );
-//               })}
-//             </div>
-//           </div>
-//         </section>
-
-//         {/* Motto Section */}
-//         <section className="p-5 bg-primary/15">
-//           <div className=" mx-auto text-center">
-//             <h2 className="text-xl md:text-4xl font-bold mb-4 text-primary-foreground">
-//               "Critical thinking for a brighter tomorrow"
-//             </h2>
-//             <p className="text-sm text-primary-foreground/90 max-w-2xl mx-auto">
-//               This is not just our motto—it's our commitment to every student who walks through our doors.
-//             </p>
-//           </div>
-//         </section>
-//       </main>
-
-//       <Footer />
-//     </div>
-//   );
-// };
-
-// export default About;
-
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -223,17 +70,17 @@ const About = () => {
   ];
 
   const milestones = [
-    { year: '2009', event: 'School Founded', icon: ScrollText, color: 'bg-amber-100 text-amber-600' },
-    { year: '2015', event: 'First Graduating Class', icon: GraduationCap, color: 'bg-emerald-100 text-emerald-600' },
+    { year: '2020', event: 'School Founded', icon: ScrollText, color: 'bg-amber-100 text-amber-600' },
+    { year: '2023', event: 'First Graduating Class', icon: GraduationCap, color: 'bg-emerald-100 text-emerald-600' },
     { year: '2020', event: 'Digital Learning Initiative', icon: Rocket, color: 'bg-purple-100 text-purple-600' },
-    { year: '2024', event: '500+ Students Enrolled', icon: Trophy, color: 'bg-yellow-100 text-yellow-600' },
+    { year: '2026', event: '200+ Students Enrolled', icon: Trophy, color: 'bg-yellow-100 text-yellow-600' },
   ];
 
   const team = [
-    { name: 'Dr. Amina Yusuf', role: 'Principal', icon: Star, color: 'text-yellow-500' },
-    { name: 'Prof. Ahmed Hassan', role: 'Head of Academics', icon: Award, color: 'text-blue-500' },
-    { name: 'Sr. Fatima Mohammed', role: 'Islamic Studies Coordinator', icon: Moon, color: 'text-emerald-500' },
-    { name: 'Mr. Ibrahim Suleiman', role: 'ICT Director', icon: Lightbulb, color: 'text-purple-500' },
+    { name: 'Dr. Aliyu Ismail ', role: 'Chief Strategist', icon: Star, color: 'text-yellow-500' },
+    { name: 'Mr. Adebayo Ahmed', role: 'Head of School', icon: Award, color: 'text-blue-500' },
+    { name: 'Mallam. Issa Sarumi', role: 'Arabic & Islamic Studies Coordinator', icon: Moon, color: 'text-emerald-500' },
+    { name: 'Mr. Aliyu Hassan', role: 'ICT Director', icon: Lightbulb, color: 'text-purple-500' },
   ];
 
   return (
@@ -400,7 +247,7 @@ const About = () => {
                 </span>
               </h2>
               <p className="text-gray-600 max-w-2xl mx-auto">
-                Celebrating 15+ years of excellence in education
+                Celebrating 6+ years of excellence in education
               </p>
             </div>
 
@@ -440,7 +287,7 @@ const About = () => {
               <Card className="p-8 bg-white border-2 border-yellow-100 rounded-2xl shadow-lg">
                 <div className="prose prose-lg max-w-none text-gray-600 space-y-4">
                   <p className="leading-relaxed text-sm">
-                    BUSY BRAIN SCHOOLS was founded over 15 years ago with a simple yet powerful vision: 
+                    BUSY BRAIN SCHOOLS was founded about decade ago with a simple yet powerful vision: 
                     to create an educational institution that nurtures critical thinking and academic excellence 
                     while preserving Islamic values and traditions. What began as a small school with a handful 
                     of dedicated teachers and enthusiastic students has grown into one of the region's most 
@@ -454,8 +301,8 @@ const About = () => {
                     possible education.
                   </p>
                   <p className="leading-relaxed text-sm">
-                    Today, BUSY BRAIN SCHOOLS serves over 500 students across various grade levels, with a team of 
-                    more than 50 dedicated staff members. Our alumni have gone on to excel in various fields, 
+                    Today, BUSY BRAIN SCHOOLS serves over 200 students across various grade levels, with a team of 
+                    more than 30 dedicated staff members. Our alumni have gone on to excel in various fields, 
                     making significant contributions to society and carrying forward the values instilled during 
                     their time at BBS.
                   </p>
@@ -543,19 +390,19 @@ const About = () => {
           <div className="container mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="text-center text-white">
-                <div className="text-3xl font-bold mb-1">15+</div>
+                <div className="text-3xl font-bold mb-1">6+</div>
                 <div className="text-sm opacity-90">Years</div>
               </div>
               <div className="text-center text-white">
-                <div className="text-3xl font-bold mb-1">500+</div>
+                <div className="text-3xl font-bold mb-1">200+</div>
                 <div className="text-sm opacity-90">Students</div>
               </div>
               <div className="text-center text-white">
-                <div className="text-3xl font-bold mb-1">50+</div>
+                <div className="text-3xl font-bold mb-1">32+</div>
                 <div className="text-sm opacity-90">Teachers</div>
               </div>
               <div className="text-center text-white">
-                <div className="text-3xl font-bold mb-1">100%</div>
+                <div className="text-3xl font-bold mb-1">94%</div>
                 <div className="text-sm opacity-90">Pass Rate</div>
               </div>
             </div>

@@ -305,8 +305,10 @@ const Footer = () => {
                   <Sun className="w-4 h-4 text-orange-500" />
                   School Day
                 </p>
-                <p className="text-xs text-gray-500">Monday - Friday</p>
-                <p className="text-base font-bold text-yellow-600">8:00 AM - 3:00 PM</p>
+                <p className="text-xs text-gray-500">Monday - Thursday</p>
+                <p className="text-base font-bold text-yellow-600">7:00 AM - 4:00 PM</p>
+                <p className="text-xs text-gray-500">Friday</p>
+                <p className="text-base font-bold text-yellow-600">7:00 AM - 1:00 PM</p>
               </div>
               
               <div className="bg-amber-50 p-3 rounded-xl border border-amber-200">
@@ -315,7 +317,7 @@ const Footer = () => {
                   Office Hours
                 </p>
                 <p className="text-xs text-gray-500">Monday - Friday</p>
-                <p className="text-base font-bold text-amber-600">8:00 AM - 5:00 PM</p>
+                <p className="text-base font-bold text-amber-600">7:00 AM - 5:00 PM</p>
               </div>
 
               <div className="flex items-center justify-center gap-1 text-xs text-gray-500 mt-2">
@@ -360,6 +362,8 @@ const Footer = () => {
                 <span>Made with</span>
                 <Heart className="w-3 h-3 text-pink-500 fill-pink-500" />
                 <span>for kids</span>
+                <br />
+                <span>Mr.A.O HASSAN</span>
               </div>
             </div>
           </div>

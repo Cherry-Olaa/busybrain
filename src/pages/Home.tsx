@@ -153,21 +153,21 @@ const Home = () => {
   const programs = [
     {
       icon: Baby,
-      title: "Early Years (Ages 3-5)",
+      title: "Early Years (Ages 2-5)",
       description: "Play-based learning with Islamic values",
-      age: "Nursery & Kindergarten",
+      age: " Pre Nursery & Nursery",
       color: "bg-pink-100 text-pink-600",
     },
     {
       icon: School,
-      title: "Primary School (Ages 6-11)",
+      title: "Grade & Primary School (Ages 5-11)",
       description: "Foundation in academics and Quran",
       age: "Grades 1-6",
       color: "bg-blue-100 text-blue-600",
     },
     {
       icon: GraduationCap,
-      title: "Secondary School (Ages 12-16)",
+      title: "Secondary School (Ages 11-17)",
       description: "Academic excellence with leadership skills",
       age: "Grades 7-11",
       color: "bg-green-100 text-green-600",
@@ -193,12 +193,12 @@ const Home = () => {
   ];
 
   const stats = [
-    { icon: Users, value: "500+", label: "Happy Students", color: "from-blue-400 to-blue-500" },
-    { icon: GraduationCap, value: "50+", label: "Caring Teachers", color: "from-green-400 to-green-500" },
+    { icon: Users, value: "200+", label: "Happy Students", color: "from-blue-400 to-blue-500" },
+    { icon: GraduationCap, value: "20+", label: "Caring Teachers", color: "from-green-400 to-green-500" },
     { icon: BookOpen, value: "30+", label: "Fun Subjects", color: "from-purple-400 to-purple-500" },
-    { icon: Award, value: "15+", label: "Years of Joy", color: "from-orange-400 to-orange-500" },
-    { icon: Trophy, value: "100+", label: "Awards Won", color: "from-yellow-400 to-yellow-500" },
-    { icon: Users2, value: "50+", label: "Staff Members", color: "from-pink-400 to-pink-500" },
+    { icon: Award, value: "6+", label: "Years of Joy", color: "from-orange-400 to-orange-500" },
+    { icon: Trophy, value: "10+", label: "Awards Won", color: "from-yellow-400 to-yellow-500" },
+    { icon: Users2, value: "30+", label: "Staff Members", color: "from-pink-400 to-pink-500" },
   ];
 
   return (
